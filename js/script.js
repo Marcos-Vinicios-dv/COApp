@@ -35,57 +35,53 @@ const Utils = {
 
 // RECUPERAÇÕES DE DADOS
 const Recuperar = {
-  paises: () => {
+  paises: async () => {
     const url = `https://api.covid19api.com/countries`;
-    fetch(url)
-      .then(response => response.json().then(data => {
-        DOM.inserirPaises(data);
-        data.forEach(pais => {
-          paises[pais.Country] = pais.Slug;
-        });
-      }))
-      
-     
-  },
-  globalDados: () => {
-    const url = `https://api.covid19api.com/summary`
+    const response = await fetch(url);
+    const listaPaises = await response.json();
 
-    fetch(url)
-      .then(response => response.json()
-        .then(data => {
-          DOM.mostrarConfirmados(data.Global.TotalConfirmed);
-          DOM.mostrarMortes(data.Global.TotalDeaths);
-          DOM.mostrarRecuperados(data.Global.TotalRecovered);
-          DOM.mostrarAtivos(data.Global.NewConfirmed)
-        }))
+    DOM.inserirPaises(listaPaises);
+
+    listaPaises.forEach(pais => {
+      paises[pais.Country] = pais.Slug;
+    });
+  },
+
+  globalDados: async () => {
+    const url = `https://api.covid19api.com/summary`;
+    const response = await fetch(url);
+    const dados = await response.json();
+
+    DOM.mostrarConfirmados(dados.Global.TotalConfirmed);
+    DOM.mostrarMortes(dados.Global.TotalDeaths);
+    DOM.mostrarRecuperados(dados.Global.TotalRecovered);
+    DOM.mostrarAtivos(dados.Global.NewConfirmed)
   },
   
-  porPais: (pais) => {
+  porPais: async (pais) => {
     const url = `https://api.covid19api.com/country/${pais}`
+    const response = await fetch(url);
+    const dados = await response.json();
 
-    fetch(url).then(response => response.json()
-      .then(data => {
-        for (const dia of data) {
-          DOM.mostrarConfirmados(dia.Confirmed);
-          DOM.mostrarMortes(dia.Deaths);
-          DOM.mostrarAtivos(dia.Active);
-          DOM.mostrarRecuperados(dia.Recovered);
-        }
-      }))
+    for (const dia of dados) {
+      DOM.mostrarConfirmados(dia.Confirmed);
+      DOM.mostrarMortes(dia.Deaths);
+      DOM.mostrarAtivos(dia.Active);
+      DOM.mostrarRecuperados(dia.Recovered);
+    }
   },
 
-  porData: (data, pais) => {
+  porData: async (data, pais) => {
     const url = `https://api.covid19api.com/country/${pais}?from=2020-03-01T00:00:00Z&to=${data}T00:00:00Z`
+    const response = await fetch(url);
+    const dados = await response.json();
 
-    fetch(url).then(response => response.json()
-      .then(data => {
-        for (const dia of data) {
-          DOM.mostrarConfirmados(dia.Confirmed);
-          DOM.mostrarMortes(dia.Deaths);
-          DOM.mostrarAtivos(dia.Active);
-          DOM.mostrarRecuperados(dia.Recovered);
-        }
-      }))
+    for (const dia of dados) {
+      DOM.mostrarConfirmados(dia.Confirmed);
+      DOM.mostrarMortes(dia.Deaths);
+      DOM.mostrarAtivos(dia.Active);
+      DOM.mostrarRecuperados(dia.Recovered);
+    }
   },
  
 }
