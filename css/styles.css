@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
+:root {
+  --primary-color: rgb(17, 86, 102);
+  --primary-color-darker: rgb(9, 48, 56);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0 0 0;
+  font-family: "Open sans", sans-serif;
+  font-size: 4.75em;
+  font-weight: bold;
+}
+
+h5 {
+  font-family: "Open sans", sans-serif;
+  text-align: center;
+  margin: 5px 0 0 0;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+h6 {
+  font-family: "Open sans", sans-serif;
+  text-align: center;
+  margin: 0px 0 0 0;
+  font-size: 0.75em;
+}
+
+body {
+  font-family: "Open sans", sans-serif;
+  font-size: 1.3em;
+  line-height: 1.5em;
+  background-image: url("../assets/images/fundo.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  overflow: auto;
+  text-align: center;
+  background-size: cover;
+  padding-top: 5%;
+}
+
+.item {
+  max-width: 400px;
+  min-width: 200px;
+  margin: 20px auto;
+  background: rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.main-container {
+  display: flex;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+
+input {
+  font-family: "Open sans", sans-serif;
+  font-size: 1.3em;
+  display: block;
+  padding: 20px;
+  margin: 20px auto;
+}
+
+select {
+  font-family: "Open sans", sans-serif;
+  font-size: 1.3em;
+  display: block;
+  margin: 20px auto;
+  padding: 20px;
+}
